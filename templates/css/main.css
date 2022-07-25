@@ -1,0 +1,53 @@
+.A4 {
+    padding: 0;
+    margin: 0;
+    border-style: solid;
+    height:297mm;
+    width:210mm;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+}
+.title{
+    padding-top: 2cm;
+    text-align: center;
+}
+
+.table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-left: 2cm;
+    margin-right: 1cm;
+    margin-top: 1cm;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding-top: 6pt;
+    padding-left: 3pt;
+    padding-right: 3pt;
+    border: 2px solid black;
+    word-wrap: break-word;
+}
+
+.image {
+    padding: 0;
+    margin: 0;
+    height: 50px;   
+    width: 30px;
+    position: relative;
+}
+
+img {
+    max-width: 120px;
+    max-height: 80px;
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    mix-blend-mode: darken;
+    z-index: -10;
+}
