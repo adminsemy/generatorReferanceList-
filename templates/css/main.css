@@ -1,7 +1,6 @@
 .A4 {
     padding: 0;
     margin: 0;
-    border-style: solid;
     height:297mm;
     width:210mm;
     font-family: "Times New Roman", Times, serif;
@@ -46,8 +45,11 @@ img {
     max-width: 120px;
     max-height: 80px;
     position: absolute;
-    top: -20%;
+    top: -10%;
     left: 50%;
-    mix-blend-mode: darken;
-    z-index: -10;
+    z-index: -1;
+}
+
+.tr-center {
+    text-align: center;
 }
