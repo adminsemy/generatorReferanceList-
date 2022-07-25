@@ -6,10 +6,12 @@ import (
 	"log"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
+	"github.com/adminsemy/generatorReferanceList/scan"
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
 func main(){
+	scan.Scan()
 	files, err := ioutil.ReadDir("./templates/picture")
 	if err != nil {
 		log.Fatal(err)
