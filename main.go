@@ -2,12 +2,20 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
 )
 
 func main(){
+	files, err := ioutil.ReadDir("./templates/picture")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		fmt.Println(file.Name())
+	}
 	pdfg, err := wkhtmltopdf.NewPDFGenerator()
 	if  err != nil {
 		log.Fatal(err)
