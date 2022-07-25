@@ -16,9 +16,6 @@ type Signatory struct {
 	PathToSignature string
 }
 
-//Слайс со списом подписывающихся
-var signatories []*Signatory
-
 func NewSignatory(
 	serial	 		int,
 	jobTitle 		string,
@@ -30,6 +27,7 @@ func NewSignatory(
 
 //Формируем список подписывающихся
 func AddSignatories(list  []string) ([]*Signatory, error) {
+	var signatories []*Signatory
 	for _, file := range list {
 		fileSplit := strings.Split(file, "|")
 		serialNumber, err :=  strconv.Atoi(fileSplit[0])
