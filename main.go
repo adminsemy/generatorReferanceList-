@@ -11,15 +11,18 @@ import (
 )
 
 func main(){
+	//Сканируем директорию с подписями 
 	filesName := scanning.Scan("./templates/picture")
 	results, err := signatories.AddSignatories(filesName)
 	if err != nil {
 		log.Fatal(err)
 	}
+	//Формируем список ознакомившихся для ответов
 	var listForChoice []string
 	for _, result := range results {
 		listForChoice = append(listForChoice, result.ListForChoice())
 	}
+	//Формируем ответы на вопросы
 	answers, err := interactive.NewAnswers(listForChoice)
 	if err != nil {
 		log.Fatal(err)
