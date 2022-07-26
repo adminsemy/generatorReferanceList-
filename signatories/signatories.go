@@ -1,6 +1,7 @@
 package signatories
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -14,6 +15,10 @@ type Signatory struct {
 	JobTitle string
 	FullName string
 	PathToSignature string
+}
+
+func (signatory *Signatory) ListForChoice() string {
+	return fmt.Sprintf("%v %v",signatory.SerialNumber,signatory.FullName)
 }
 
 func NewSignatory(

@@ -5,21 +5,26 @@ import (
 	"log"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
+	"github.com/adminsemy/generatorReferanceList/interactive"
 	"github.com/adminsemy/generatorReferanceList/scanning"
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
 func main(){
-	//answers = interactive.NewAnswers()
 	filesName := scanning.Scan("./templates/picture")
 	results, err := signatories.AddSignatories(filesName)
 	if err != nil {
 		log.Fatal(err)
 	}
+	var listForChoice []string
 	for _, result := range results {
-		fmt.Println(result)
+		listForChoice = append(listForChoice, result.ListForChoice())
 	}
-
+	answers, err := interactive.NewAnswers(listForChoice)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(answers)
 
 	//Формируем новый pdf документ
 	pdfg, err := wkhtmltopdf.NewPDFGenerator()

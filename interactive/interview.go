@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 //Структура для хранения ответов от пользователей
@@ -18,18 +19,19 @@ func NewAnswers(signatories []string) (*Answers, error) {
 	var answer Answers
 	createFamiliarizationWith(&answer)
 	createDate(&answer)
+	createIdSignatories(&answer, signatories)
 	return &answer, nil
 }
 
 func createFamiliarizationWith(answer *Answers) {
-	fmt.Println("Введите полную строку, с чем нужно ознакомиться./n Например: с приказом №1 от 26.07.2022")
+	fmt.Printf("Введите полную строку, с чем нужно ознакомиться.\n Например: с приказом №1 от 26.07.2022\n")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	answer.FamiliarizationWith = scanner.Text()
 }
 
 func createDate(answer *Answers) {
-	fmt.Println("Введите дату ознакомления в нужном формате./n Например: 26.07.2022")
+	fmt.Printf("Введите дату ознакомления в нужном формате.\n Например: 26.07.2022\n")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	answer.Date = scanner.Text()
@@ -37,12 +39,18 @@ func createDate(answer *Answers) {
 
 
 func createIdSignatories(answer *Answers, signatories []string) {
-	fmt.Println("Выберите людей для ознакомления. Необходимо вводить только номера./nЧисло 0 означает выбрать всех")
+	fmt.Printf("Выберите людей для ознакомления. Необходимо вводить только номера.\nЧисло 0 означает выбрать всех\n")
+	for _, signatory := range signatories {
+		fmt.Println(signatory)
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-	data, err := strconv.Atoi(scanner.Text())
-	if  err != nil{
-		data = 0
+	choiceSignatories := strings.Split(scanner.Text(), ",")
+	for _, chchoiceSignatory := range choiceSignatories {
+		intSignatory, err := strconv.Atoi(chchoiceSignatory)
+		if err != nil {
+			answer.IdSignatories = []int{0}
+		}
+		answer.IdSignatories = append(answer.IdSignatories, intSignatory)
 	}
-	fmt.Println(data)
 }
