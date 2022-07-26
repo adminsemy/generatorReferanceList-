@@ -2,24 +2,16 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
-	"github.com/adminsemy/generatorReferanceList/scan"
+	"github.com/adminsemy/generatorReferanceList/scanning"
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
 func main(){
-	scan.Scan()
-	files, err := ioutil.ReadDir("./templates/picture")
-	if err != nil {
-		log.Fatal(err)
-	}
-	var filesName []string
-	for _, file := range files {
-		filesName = append(filesName, file.Name())
-	}
+	//answers = interactive.NewAnswers()
+	filesName := scanning.Scan("./templates/picture")
 	results, err := signatories.AddSignatories(filesName)
 	if err != nil {
 		log.Fatal(err)
