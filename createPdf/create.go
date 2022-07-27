@@ -1,7 +1,6 @@
 package createpdf
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -29,7 +28,6 @@ func Create(s *strings.Reader) {
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(path)  
 
 	page.Allow.Set(path +  "/templates")
 	page.FooterRight.Set("[page]")

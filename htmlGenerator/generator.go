@@ -6,16 +6,19 @@ import (
 	"html/template"
 	"log"
 	"strings"
+
+	"github.com/adminsemy/generatorReferanceList/interactive"
+	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
 
-func Generate(path string) *strings.Reader{
+func Generate(path string, s []*signatories.Signatory, i *interactive.Answers) *strings.Reader{
 	t, err := template.ParseFiles(path)
 	if err != nil  {
 		log.Fatal(err)
 	}
 	var buf bytes.Buffer
-	if err = t.Execute(&buf, nil); err != nil {
+	if err = t.Execute(&buf, i); err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(buf.String())

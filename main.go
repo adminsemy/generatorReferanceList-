@@ -23,6 +23,7 @@ func main(){
 	for _, result := range results {
 		listForChoice = append(listForChoice, result.ListForChoice())
 	}
+	fmt.Println(listForChoice)
 	//Формируем ответы на вопросы
 	answers, err := interactive.NewAnswers(listForChoice)
 	if err != nil {
@@ -31,7 +32,7 @@ func main(){
 	fmt.Println(answers)
 
 	//Формируем новый pdf документ
-	g := htmlgenerator.Generate("./templates/referanceList.html")
+	g := htmlgenerator.Generate("./templates/referanceList.html", results, answers)
 	createpdf.Create(g)
 	fmt.Println("Done!")
 }
