@@ -15,10 +15,10 @@
         <table>
             <tbody>
                 <tr>
-                    <td>Подразделение ДКиТ АСУ, филиал «Нижновэнерго»</td>
+                    <td class="font">Подразделение ДКиТ АСУ, филиал «Нижновэнерго»</td>
                 </tr>
                 <tr>
-                    <td>{{$.Answers.FamiliarizationWith}}
+                    <td class="font">{{$.Answers.FamiliarizationWith}}
                         <br/>
                         ОЗНАКОМЛЕНЫ:
                     </td>
@@ -31,8 +31,8 @@
                         <th>Дата</th>
                         <th>Подпись</th>
                         {{range $signatory := .Signatories}}
-                        <tr class="tr-center">
-                            <td>{{$signatory.SerialNumber}}</td>
+                        <tr>
+                            <td class="center">{{$signatory.SerialNumber}}</td>
                             <td>{{$signatory.JobTitle}}</td>
                             <td>{{$signatory.FullName}}</td>
                             <td>{{$.Answers.Date}}</td>

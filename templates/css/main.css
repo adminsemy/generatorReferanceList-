@@ -1,14 +1,11 @@
 .A4 {
-    padding: 0;
-    margin: 0;
-    height:297mm;
-    width:210mm;
     font-family: "Times New Roman", Times, serif;
-    font-size: 14px;
+    font-size: 14pt;
 }
 .title{
     padding-top: 2cm;
     text-align: center;
+    font-weight: bold;
 }
 
 .table {
@@ -50,6 +47,10 @@ img {
     z-index: -1;
 }
 
-.tr-center {
+.center {
     text-align: center;
+}
+
+.font {
+    font-weight: bold;
 }
