@@ -2,3 +2,5 @@ templates/picture
 templates/Лист
 result/
 .vscode
+build
+main.exe

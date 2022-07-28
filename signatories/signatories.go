@@ -34,7 +34,7 @@ func NewSignatory(
 func AddSignatories(list  []string) ([]*Signatory, error) {
 	var signatories []*Signatory
 	for _, file := range list {
-		fileSplit := strings.Split(file, "|")
+		fileSplit := strings.Split(file, "+")
 		serialNumber, err :=  strconv.Atoi(fileSplit[0])
 		if err != nil {
 			log.Fatal(err)
