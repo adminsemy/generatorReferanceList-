@@ -40,7 +40,6 @@ func main(){
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(answers)
 
 	data.Answers = answers
 	//Создаен из шаблона сгенерированную строку
