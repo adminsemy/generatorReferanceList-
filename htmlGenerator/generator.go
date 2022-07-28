@@ -2,7 +2,6 @@ package htmlgenerator
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"log"
 	"strings"
@@ -11,16 +10,21 @@ import (
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
+type Data struct {
+	Signatories []*signatories.Signatory
+	Answers *interactive.Answers
+	CurrentDirectory string
+}
 
-func Generate(path string, s []*signatories.Signatory, i *interactive.Answers) *strings.Reader{
+
+func Generate(path string, d *Data) *strings.Reader{
 	t, err := template.ParseFiles(path)
 	if err != nil  {
 		log.Fatal(err)
 	}
 	var buf bytes.Buffer
-	if err = t.Execute(&buf, i); err != nil {
+	if err = t.Execute(&buf, d); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(buf.String())
 	return strings.NewReader(buf.String())
 }

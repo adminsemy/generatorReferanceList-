@@ -18,7 +18,8 @@
                     <td>Подразделение ДКиТ АСУ, филиал «Нижновэнерго»</td>
                 </tr>
                 <tr>
-                    <td>{{$.FamiliarizationWith}}
+                    <td>{{$.Answers.FamiliarizationWith}}
+                        <br/>
                         ОЗНАКОМЛЕНЫ:
                     </td>
                 </tr>
@@ -29,13 +30,15 @@
                         <th>И.О.Ф.</th>
                         <th>Дата</th>
                         <th>Подпись</th>
+                        {{range $signatory := .Signatories}}
                         <tr class="tr-center">
-                            <td>1</td>
-                            <td>Начальник службы</td>
-                            <td>И.А. Овчинников</td>
-                            <td>01.01.2022</td>
-                            <td><div class="image"><img  src="/home/semyadmin/www/go/templates/picture/1|Начальник службы|И.А. Овчинников|.png" /></div></td>
+                            <td>{{$signatory.SerialNumber}}</td>
+                            <td>{{$signatory.JobTitle}}</td>
+                            <td>{{$signatory.FullName}}</td>
+                            <td>{{$.Answers.Date}}</td>
+                            <td><div class="image"><img  src="{{$.CurrentDirectory}}/{{$signatory.PathToSignature}}" /></div></td>
                         </tr>
+                        {{end}}
                     </table>
                 </tr>
             </tbody>

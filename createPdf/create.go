@@ -2,14 +2,13 @@ package createpdf
 
 import (
 	"log"
-	"os"
 	"strings"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
 )
 
 //Создаем документ с нужными параметрами
-func Create(s *strings.Reader) {
+func Create(s *strings.Reader, path string) {
 	pdfg, err := wkhtmltopdf.NewPDFGenerator()
 	if  err != nil {
 		log.Fatal(err)
@@ -17,20 +16,13 @@ func Create(s *strings.Reader) {
 	pdfg.Dpi.Set(300)
 	pdfg.Orientation.Set(wkhtmltopdf.OrientationPortrait)
 	pdfg.PageSize.Set(wkhtmltopdf.PageSizeA4)
-	pdfg.MarginLeft.Set(0)
 	pdfg.MarginBottom.Set(0)
 	pdfg.MarginRight.Set(0)
 	pdfg.MarginTop.Set(0)
 
 	page := wkhtmltopdf.NewPageReader(s)
 
-	path, err := os.Getwd()
-	if err != nil {
-		log.Println(err)
-	}
-
 	page.Allow.Set(path +  "/templates")
-	page.FooterRight.Set("[page]")
 
 	pdfg.AddPage(page)
 
