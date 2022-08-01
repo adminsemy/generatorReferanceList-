@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	createpdf "github.com/adminsemy/generatorReferanceList/createPdf"
 	htmlgenerator "github.com/adminsemy/generatorReferanceList/htmlGenerator"
 	"github.com/adminsemy/generatorReferanceList/interactive"
+	"github.com/adminsemy/generatorReferanceList/paths"
 	"github.com/adminsemy/generatorReferanceList/scanning"
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
@@ -16,11 +16,8 @@ func main(){
 	var data htmlgenerator.Data
 
 	//Устанавлваем текущую директорию
-	path, err := os.Getwd()
-	if err != nil {
-		log.Println(err)
-	}
-	data.CurrentDirectory = path + "/templates/picture"
+	path := paths.NewPatchs()
+	data.CurrentDirectory = path.PatchToPictures
 
 	//Сканируем директорию с подписями 
 	filesName := scanning.Scan("./templates/picture")
@@ -46,6 +43,6 @@ func main(){
 	g := htmlgenerator.Generate("./templates/referanceList.html", &data)
 
 	//Формируем новый pdf документ
-	createpdf.Create(g, path)
+	createpdf.Create(g, path.CurrentDirectory)
 	fmt.Println("Done!")
 }
