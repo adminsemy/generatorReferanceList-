@@ -43,6 +43,7 @@ func main(){
 	g := htmlgenerator.Generate(&data)
 
 	//Формируем новый pdf документ
+	fmt.Println(path.PathToCss)
 	createpdf.Create(g, path)
 	fmt.Println("Done!")
 }
