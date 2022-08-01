@@ -7,18 +7,19 @@ import (
 	"strings"
 
 	"github.com/adminsemy/generatorReferanceList/interactive"
+	"github.com/adminsemy/generatorReferanceList/paths"
 	"github.com/adminsemy/generatorReferanceList/signatories"
 )
 
 type Data struct {
 	Signatories []*signatories.Signatory
 	Answers *interactive.Answers
-	CurrentDirectory string
+	Paths *paths.Paths
 }
 
 
-func Generate(path string, d *Data) *strings.Reader{
-	t, err := template.ParseFiles(path)
+func Generate(d *Data) *strings.Reader{
+	t, err := template.ParseFiles(d.Paths.PathToTemplate)
 	if err != nil  {
 		log.Fatal(err)
 	}

@@ -17,7 +17,7 @@ func main(){
 
 	//Устанавлваем текущую директорию
 	path := paths.NewPatchs()
-	data.CurrentDirectory = path.PatchToPictures
+	data.Paths = path
 
 	//Сканируем директорию с подписями 
 	filesName := scanning.Scan("./templates/picture")
@@ -40,9 +40,9 @@ func main(){
 
 	data.Answers = answers
 	//Создаен из шаблона сгенерированную строку
-	g := htmlgenerator.Generate("./templates/referanceList.html", &data)
+	g := htmlgenerator.Generate(&data)
 
 	//Формируем новый pdf документ
-	createpdf.Create(g, path.CurrentDirectory)
+	createpdf.Create(g, path)
 	fmt.Println("Done!")
 }

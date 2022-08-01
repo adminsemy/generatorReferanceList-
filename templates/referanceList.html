@@ -6,7 +6,7 @@
   <!--[if IE]>
    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <link rel="stylesheet" href="/home/semyadmin/www/go/templates/css/main.css">
+  <link rel="stylesheet" href="{{$.Paths.PathToCss}}">
  </head>
  <body>
   <div class="A4">
@@ -36,7 +36,7 @@
                             <td>{{$signatory.JobTitle}}</td>
                             <td>{{$signatory.FullName}}</td>
                             <td>{{$.Answers.Date}}</td>
-                            <td><div class="image"><img  src="{{$.CurrentDirectory}}/{{$signatory.PathToSignature}}" /></div></td>
+                            <td><div class="image"><img  src="{{$.Paths.PathToPictures}}/{{$signatory.PathToSignature}}" /></div></td>
                         </tr>
                         {{end}}
                     </table>

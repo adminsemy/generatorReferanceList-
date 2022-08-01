@@ -5,10 +5,11 @@ import (
 	"strings"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
+	"github.com/adminsemy/generatorReferanceList/paths"
 )
 
 //Создаем документ с нужными параметрами
-func Create(s *strings.Reader, path string) {
+func Create(s *strings.Reader, path *paths.Paths) {
 	pdfg, err := wkhtmltopdf.NewPDFGenerator()
 	if  err != nil {
 		log.Fatal(err)
@@ -22,7 +23,7 @@ func Create(s *strings.Reader, path string) {
 
 	page := wkhtmltopdf.NewPageReader(s)
 
-	page.Allow.Set(path +  "/templates")
+	page.Allow.Set(path.CurrentDirectory)
 
 	pdfg.AddPage(page)
 
