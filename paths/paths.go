@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"strings"
 )
 
 //Структура для хранения путей к файлам
@@ -17,15 +18,16 @@ type Paths struct {
 //Формируем все пути
 func NewPatchs() *Paths{
 	var file string
-	pathSeparator := string(os.PathSeparator)
-	if runtime.GOOS == "windows" {
-		file = "file:" + pathSeparator + pathSeparator
-	}
 	path, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
 	}
-	filePatch := file + path
+	if runtime.GOOS == "windows" {
+		file = "file:" + "/" + "/" + "/"
+	}
+	//Указываем абсолютный путь до проекта. Если Windows то
+	//заменяем обратные слеши на обычные
+	filePatch := file + replase(path)
 	pathPitures := join(filePatch, "templates", "picture")
 	pathCss := join(filePatch, "templates", "css", "main.css")
 	pathTemplate := join(path, "templates", "referanceList.html")
@@ -38,14 +40,11 @@ func NewPatchs() *Paths{
 }
 
 func join(elem ...string) string {
-	pathSeparator := string(os.PathSeparator)
-	var result string
-	for i, e :=  range elem {
-		if i == len(elem) - 1 {
-			result += e
-			break
-		}
-		result += e + pathSeparator
-	}
+	result := strings.Join(elem, "/")
+	return result
+}
+
+func replase(s string) string{
+	result := strings.ReplaceAll(s, "\\", "/")
 	return result
 }
