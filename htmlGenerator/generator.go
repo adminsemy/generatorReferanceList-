@@ -2,9 +2,9 @@ package htmlgenerator
 
 import (
 	"bytes"
-	"html/template"
 	"log"
 	"strings"
+	"text/template"
 
 	"github.com/adminsemy/generatorReferanceList/interactive"
 	"github.com/adminsemy/generatorReferanceList/paths"
