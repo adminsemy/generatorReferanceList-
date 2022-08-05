@@ -19,7 +19,14 @@ type Data struct {
 
 
 func Generate(d *Data) *strings.Reader{
-	t, err := template.ParseFiles(d.Paths.PathToTemplate)
+	t, err := template.New("referanceList.html").Funcs(template.FuncMap{
+		"equal" : func (s *signatories.Signatory, a int)  bool{
+			if (a == 0) {
+				return true
+			}
+			return s.SerialNumber == a
+		},
+	}).ParseFiles(d.Paths.PathToTemplate)
 	if err != nil  {
 		log.Fatal(err)
 	}

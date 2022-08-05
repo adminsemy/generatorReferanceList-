@@ -31,7 +31,6 @@ func main(){
 	for _, result := range data.Signatories {
 		listForChoice = append(listForChoice, result.ListForChoice())
 	}
-	fmt.Println(listForChoice)
 	//Формируем ответы на вопросы
 	answers, err := interactive.NewAnswers(listForChoice)
 	if err != nil {
@@ -43,7 +42,7 @@ func main(){
 	g := htmlgenerator.Generate(&data)
 
 	//Формируем новый pdf документ
-	fmt.Println(path.PathToCss)
+	
 	createpdf.Create(g, path)
 	fmt.Println("Done!")
 }

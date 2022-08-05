@@ -31,13 +31,17 @@
                         <th>Дата</th>
                         <th>Подпись</th>
                         {{range $signatory := .Signatories}}
-                        <tr>
-                            <td class="center">{{$signatory.SerialNumber}}</td>
-                            <td>{{$signatory.JobTitle}}</td>
-                            <td>{{$signatory.FullName}}</td>
-                            <td>{{$.Answers.Date}}</td>
-                            <td><div class="image"><img  src="{{$.Paths.PathToPictures}}/{{$signatory.PathToSignature}}" /></div></td>
-                        </tr>
+                            {{range $idSignatory := $.Answers.IdSignatories}}
+                                {{if (equal $signatory $idSignatory)}}
+                                <tr>
+                                    <td class="center">{{$signatory.SerialNumber}}</td>
+                                    <td>{{$signatory.JobTitle}}</td>
+                                    <td>{{$signatory.FullName}}</td>
+                                    <td>{{$.Answers.Date}}</td>
+                                    <td><div class="image"><img  src="{{$.Paths.PathToPictures}}/{{$signatory.PathToSignature}}" /></div></td>
+                                </tr>
+                                {{end}}
+                            {{end}}
                         {{end}}
                     </table>
                 </tr>
