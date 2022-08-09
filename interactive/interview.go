@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 //Структура для хранения ответов от пользователей
@@ -31,15 +32,19 @@ func createFamiliarizationWith(answer *Answers) {
 }
 
 func createDate(answer *Answers) {
-	fmt.Printf("Введите дату ознакомления в нужном формате.\n Например: 26.07.2022\n")
+	fmt.Printf("Введите дату ознакомления в нужном формате. Например: 26.07.2022 \nЕсли ничего не ввести поставит текущую дату\n")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	answer.Date = scanner.Text()
+	if (answer.Date == "") {
+		dt := time.Now()
+		answer.Date = dt.Format("02.01.2006")
+	}
 }
 
 
 func createIdSignatories(answer *Answers, signatories []string) {
-	fmt.Printf("Выберите людей для ознакомления. Необходимо вводить только номера.\nЧисло 0 означает выбрать всех\n")
+	fmt.Printf("Выберите людей для ознакомления. Необходимо вводить только номера через запятую.\nЧисло 0 означает выбрать всех\n")
 	for _, signatory := range signatories {
 		fmt.Println(signatory)
 	}

@@ -15,7 +15,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td class="font">Подразделение ДКиТ АСУ, филиал «Нижновэнерго»</td>
+                    <td class="font">Подразделение ДКиТ АСУ, филиал «Нижновэнерго», СЭСДТУ, Семеновский участок</td>
                 </tr>
                 <tr>
                     <td class="font">{{$.Answers.FamiliarizationWith}}
@@ -34,7 +34,7 @@
                             {{range $idSignatory := $.Answers.IdSignatories}}
                                 {{if (equal $signatory $idSignatory)}}
                                 <tr>
-                                    <td class="center">{{$signatory.SerialNumber}}</td>
+                                    <td class="center">{{printf "%v" increment}}</td>
                                     <td>{{$signatory.JobTitle}}</td>
                                     <td>{{$signatory.FullName}}</td>
                                     <td>{{$.Answers.Date}}</td>
