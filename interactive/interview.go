@@ -44,7 +44,7 @@ func createDate(answer *Answers) {
 
 
 func createIdSignatories(answer *Answers, signatories []string) {
-	fmt.Printf("Выберите людей для ознакомления. Необходимо вводить только номера через запятую.\nЧисло 0 означает выбрать всех\n")
+	fmt.Printf("Выберите людей для ознакомления. Необходимо вводить только номера через запятую.\nЕсли нажать Enter и ничего не вводить, о выберет всех\n")
 	for _, signatory := range signatories {
 		fmt.Println(signatory)
 	}
